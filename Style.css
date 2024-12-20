@@ -1,0 +1,151 @@
+/* Body styles with RGB background animation */
+@keyframes rgbBackground {
+    0% { background: rgb(255, 0, 102); }
+    25% { background: rgb(0, 204, 255); }
+    50% { background: rgb(102, 255, 102); }
+    75% { background: rgb(255, 255, 51); }
+    100% { background: rgb(255, 0, 102); }
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    animation: rgbBackground 10s infinite alternate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Game title with glowing RGB effect */
+@keyframes glow {
+    0% { color: rgb(255, 0, 102); text-shadow: 0 0 10px rgb(255, 0, 102), 0 0 20px rgb(255, 0, 102); }
+    25% { color: rgb(0, 204, 255); text-shadow: 0 0 10px rgb(0, 204, 255), 0 0 20px rgb(0, 204, 255); }
+    50% { color: rgb(102, 255, 102); text-shadow: 0 0 10px rgb(102, 255, 102), 0 0 20px rgb(102, 255, 102); }
+    75% { color: rgb(255, 255, 51); text-shadow: 0 0 10px rgb(255, 255, 51), 0 0 20px rgb(255, 255, 51); }
+    100% { color: rgb(255, 0, 102); text-shadow: 0 0 10px rgb(255, 0, 102), 0 0 20px rgb(255, 0, 102); }
+}
+
+.game-title {
+    font-size: 3em;
+    margin-bottom: 10px;
+    animation: glow 3s infinite;
+}
+
+#status {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Board layout */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Cell styles */
+.cell {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s, border-color 0.3s;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.cell.taken {
+    cursor: not-allowed;
+}
+
+/* Glow effect for "X" */
+.cell.taken.X {
+    color: rgba(255, 0, 102, 1);
+    text-shadow: 0 0 5px rgba(255, 0, 102, 0.8), 0 0 10px rgba(255, 0, 102, 0.6), 0 0 20px rgba(255, 0, 102, 0.4);
+}
+
+/* Glow effect for "O" */
+.cell.taken.O {
+    color: rgba(0, 204, 255, 1);
+    text-shadow: 0 0 5px rgba(0, 204, 255, 0.8), 0 0 10px rgba(0, 204, 255, 0.6), 0 0 20px rgba(0, 204, 255, 0.4);
+}
+
+/* Add glowing effect dynamically when taken */
+.cell.taken {
+    animation: glowEffect 0.8s infinite alternate;
+}
+
+@keyframes glowEffect {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Winning animation */
+.cell.winning {
+    animation: highlightWin 1s infinite alternate;
+}
+
+@keyframes highlightWin {
+    from { background: rgba(255, 255, 255, 0.5); }
+    to { background: rgba(255, 255, 255, 0.8); }
+}
+
+/* Draw animation */
+.cell.draw {
+    animation: drawGlow 1s infinite alternate;
+}
+
+@keyframes drawGlow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.3);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Restart button styles */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#restartButton {
+    background-color: #ffffff;
+    color: #ff6f91;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#restartButton:hover {
+    background-color: #ffc75f;
+    transform: scale(1.1);
+}
